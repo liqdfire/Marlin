@@ -750,10 +750,13 @@
   #endif
 
   #ifdef TEMP_STAT_LEDS
-    #if MB(AZTEEG_X3)
-      #define STAT_LED_RED       6
-      #define STAT_LED_BLUE     11
-    #endif
+	#if MB(AZTEEG_X3)  // Define the ring color led for the VIKI2.0 when used with Azteeg X3
+		#define STAT_LED_RED      64
+		#define STAT_LED_BLUE     63
+	#else
+		#define STAT_LED_RED       32
+		#define STAT_LED_BLUE      35
+	#endif
   #endif
 
   #ifdef ULTRA_LCD
@@ -787,6 +790,20 @@
         #define BTN_ENC -1
         #define LCD_SDSS 53
         #define SDCARDDETECT 49
+	#elif defined(VIKI2) || defined(miniVIKI)
+		#define BEEPER 33
+		// Pins for DOGM SPI LCD Support
+		//  KNB - I found that these were overridden by values specified in dogm_lcd_implementation.h
+		#define DOGLCD_A0  31
+		#define DOGLCD_CS  32
+		#define LCD_SCREEN_ROT_180
+
+		//The encoder and click button
+		#define BTN_EN1 22
+		#define BTN_EN2 7
+		#define BTN_ENC 12  // the click switch on the VIKI2.0 when used with Azteeg X3
+
+		#define SDCARDDETECT 49  // VIKI2.0 SDCARDDETECT 49 from wiring diagram for VIKI2.0
       #else
         //arduino pin which triggers an piezzo beeper
         #define BEEPER 33  // Beeper on AUX-4

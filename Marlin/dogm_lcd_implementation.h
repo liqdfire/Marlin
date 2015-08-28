@@ -39,6 +39,16 @@
 #include "ultralcd.h"
 #include "ultralcd_st7920_u8glib_rrd.h"
 
+#ifdef VIKI2
+#define DOGLCD_A0  31
+#define DOGLCD_CS  32
+#else
+#define DOGLCD_A0  44
+#define DOGLCD_CS  45
+#endif
+
+#define LCD_SCREEN_ROT_180
+
 /* Russian language not supported yet, needs custom font
 
 #if LANGUAGE_CHOICE == ru
